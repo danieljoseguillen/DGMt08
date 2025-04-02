@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/webjars/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <title>Edición de usuario</title>
+</head>
+
+<body>
+
+    <h1>Edición de usuario</h1>
+    <form method="post" action="#" th:action="@{/usuario/edit/submit}" th:object="${formulario}">
+        <table class="table">
+            <input type="hidden" readonly th:field="*{id}">
+            <tr>
+                <td>Alias</td>
+                <td><input type="text" th:field="*{nombre}" required></td>
+            </tr>
+            <tr>
+                <td>Contraseña</td>
+                <td><input type="text" name="contraseña" placeholder="Dejar vacía para no cambiar"></td>
+            </tr>
+            <tr>
+                <td>Rol</td>
+                <td> <select th:field="*{rol}">
+                        <option th:each="rol: ${T(com.tarea8.dgmt08e03.Domain.Roles).values()}" th:value="${rol}"
+                            th:text="${rol}"></option>
+                    </select>
+
+                </td>
+            </tr>
+        </table>
+        <input type="submit" class="btn btn-primary btn-block" value="Modificar">
+        <a class="btn btn-primary btn-block" th:href="@{/usuario/}">Volver</a>
+    </form>
+    <div th:if="${error!=null}">
+        <p class="alert alert-danger" th:text="${error}"></p>
+    </div>
+</body>
+
+</html>

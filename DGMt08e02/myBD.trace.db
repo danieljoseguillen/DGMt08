@@ -1,0 +1,8 @@
+2025-02-15 01:00:41.662023+01:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "DELETE FROM MOVIMIENTO WHERE CUENTA_IBAN =[*]= null"; se esperaba "ALL (, ANY (, SOME ("
+Syntax error in SQL statement "DELETE FROM MOVIMIENTO WHERE CUENTA_IBAN =[*]= null"; expected "ALL (, ANY (, SOME ("; SQL statement:
+DELETE FROM MOVIMIENTO WHERE CUENTA_IBAN == null [42001-232]
+2025-02-15 01:02:15.626828+01:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "DELETE FROM MOVIMIENTO WHERE ID=31[*]MOVIMIENTO"
+Syntax error in SQL statement "DELETE FROM MOVIMIENTO WHERE ID=31[*]MOVIMIENTO"; SQL statement:
+DELETE FROM MOVIMIENTO WHERE ID=31MOVIMIENTO [42000-232]

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+ xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity"> 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/webjars/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <title>Datos del empleado</title>
+</head>
+<body>
+    <h1>Datos del empleado</h1>
+    <table class="table">
+        <tr>
+            <td>ID</td>
+            <td th:text="*{empleado.id}"></td>
+        </tr>
+        <tr>
+            <td>Nombre</td>
+            <td th:text="*{empleado.nombre}"></td>
+        </tr>
+        <tr>
+            <td>Correo</td>
+            <td th:text="*{empleado.correo}"></td>
+        </tr>
+        <tr>
+            <td>Salario</td>
+            <td th:text="*{empleado.salario}"></td>
+        </tr>
+        <tr>
+            <td>Estado</td>
+            <td th:text="*{empleado.estado}"></td>
+        </tr>
+        <tr>
+            <td>Genero</td>
+            <td th:text="*{empleado.genero}"></td>
+        </tr>
+    </table>
+    <a class="btn btn-primary btn-block" th:href="@{/edit/{id}(id=${empleado.id})}">Editar</a>
+    <a class="btn btn-danger btn-block" th:href="@{/delete/{id}(id=${empleado.id})}">Borrar</a> <a class="btn btn-primary btn-block" th:href="@{/}">Volver</a>
+</body>
+</html>

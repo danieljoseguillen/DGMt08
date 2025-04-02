@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/webjars/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <title>Nuevo movimiento</title>
+</head>
+
+<body>
+
+    <h1>Nuevo movimiento</h1>
+    <form method="post" action="#" th:action="@{/movements/new/submit}" th:object="${moveForm}">
+        <table class="table">
+            <tr>
+                <td>Cuenta</td>
+                <td><select th:field="*{cuenta}" required>
+                    <option th:each="cuenta:${cuentas}" th:text="${cuenta.IBAN}" th:value="${cuenta.IBAN}"></option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>Monto</td>
+                <td><input type="number" th:field="*{saldo}" required></td>
+            </tr>
+        </table>
+        <input type="submit" class="btn btn-primary btn-block" value="Crear">
+        <a class="btn btn-primary btn-block" th:href="@{/movements}">Volver</a>
+        <input type="text" name="saldo" value="0" hidden readonly required>
+    </form>
+    <div th:if="${error!=null}">
+        <p class="alert alert-danger" th:text="${error}"></p>
+    </div>
+</body>
+</html>
