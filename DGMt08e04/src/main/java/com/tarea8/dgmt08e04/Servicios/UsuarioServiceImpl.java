@@ -35,7 +35,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     public Usuario agregar(Usuario user) {
         try {
-            if (repositorio.findByNombre(user.getNombre()).orElse(null) != null) {
+            if (repositorio.findByNombre(user.getNombre()).isPresent()) {
                 throw new RuntimeException("El nombre ya existe.");
             }
             user.setContraseña(encoder.encode(user.getContraseña()));
@@ -64,12 +64,12 @@ public class UsuarioServiceImpl implements UsuarioService {
     public boolean deleteUser(Long id) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Usuario usr = repositorio.findByNombre(authentication.getName())
-                .orElseThrow(() -> new RuntimeException("No se pudo borrar el usuario"));
+                .orElseThrow(() -> new RuntimeException("No se encontró el usuario"));
         if (usr.getId() == id) {
             throw new RuntimeException("No se puede borrar el usuario activo.");
         }
         repositorio.deleteById(id);
-        if (repositorio.findById(id).orElse(null) != null) {
+        if (repositorio.findById(id).isPresent()) {
             throw new RuntimeException("No se pudo borrar el usuario");
         }
         return true;

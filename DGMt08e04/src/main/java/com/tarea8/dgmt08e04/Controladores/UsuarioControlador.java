@@ -43,7 +43,7 @@ public class UsuarioControlador {
     @PostMapping("/new/submit")
     public String postNewUser(@Valid Usuario formulario, BindingResult bindingResult, Model model) {
         formulario.setRol(Roles.USER);
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors() || formulario.getContraseña().length() < 4) {
             model.addAttribute("formulario", formulario);
             model.addAttribute("error", "Hay errores en el formulario");
             return "/usuario/newUserView";
